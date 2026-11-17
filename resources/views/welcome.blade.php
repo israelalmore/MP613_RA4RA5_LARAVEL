@@ -22,9 +22,29 @@
         <li><a href=/filmout/filmsByGenre>Pelis por genero</a></li>
         <li><a href=/filmout/sortByYear>Pelis ordenadas de mayor a menor año</a></li>
         <li><a href=/filmout/countFilms>Contador de pelis</a></li>
-
-
     </ul>
+
+    <form>
+        <label for="filmName">Nombre</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="fname">Año</label><br>
+        <input type="text" id="year" name="year"><br>
+
+        <label for="fgenre">Genero</label><br>
+        <input type="text" id="genre" name="genre"><br>
+
+        <label for="fcountry">Pais</label><br>
+        <input type="text" id="contry" name="country"><br>
+
+        <label for="fduration">Duracion</label><br>
+        <input type="text" id="duration" name="duration"><br>
+
+        <label for="image">Imagen URL</label><br>
+        <input type="text" id="image" name="image"><br>
+
+        <input type="submit">
+    </form>
     <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
