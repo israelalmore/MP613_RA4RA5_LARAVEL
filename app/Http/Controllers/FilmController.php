@@ -98,7 +98,7 @@ class FilmController extends Controller
         //list based on year
         foreach ($films as $film) {
             if (!is_null($year) && $film['year'] == $year) {
-                $title = "Listado de todas las pelis filtrado x año (1985)";
+                $title = "Listado de todas las pelis filtrado por año " . $year;
                 $films_filtered[] = $film;
             }
         }
@@ -140,5 +140,15 @@ class FilmController extends Controller
 
 
         return view("films.list", ["films" => $films, "title" => $title]);
+    }
+
+    public function countFilms()
+    {
+
+        $title = "Contador de todas las pelis";
+        $films = FilmController::readFilms();
+        $count = count($films);
+
+        return view("films.count", ["title" => $title, "count" => $count]);
     }
 }
