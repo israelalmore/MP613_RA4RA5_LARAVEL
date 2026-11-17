@@ -119,10 +119,26 @@ class FilmController extends Controller
         //list based on year or genre informed
         foreach ($films as $film) {
             if (!is_null($genre) && strtolower($film['genre']) == strtolower($genre)) {
-                $title = "Listado de todas las pelis filtrado x categoria (Drama)";
+                $title = "Listado de todas las pelis filtrado por categoria (Drama)";
                 $films_filtered[] = $film;
             }
         }
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
+    }
+
+    public function sortFilmsByYear()
+    {
+        $films_filtered = [];
+
+        $title = "Listado de todas las pelis";
+        $films = FilmController::readFilms();
+
+        //list based on year
+        $sortFilms = uasort($films, function ($a, $b) {
+            return $a["year"] <=> $b["year"];
+        });
+
+
+        return view("films.list", ["films" => $films, "title" => $title]);
     }
 }
