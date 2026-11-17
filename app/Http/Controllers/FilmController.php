@@ -91,14 +91,14 @@ class FilmController extends Controller
         $title = "Listado de todas las pelis";
         $films = FilmController::readFilms();
 
-        //if year
+        //if year is null
         if (is_null($year))
-            $year = 1985;
+            return view("films.list", ["films" => $films, "title" => $title]);
 
         //list based on year
         foreach ($films as $film) {
             if (!is_null($year) && $film['year'] == $year) {
-                $title = "Listado de todas las pelis filtrado por año " . $year;
+                $title = "Listado de todas las pelis filtradas por año " . $year;
                 $films_filtered[] = $film;
             }
         }
@@ -112,14 +112,14 @@ class FilmController extends Controller
         $title = "Listado de todas las pelis";
         $films = FilmController::readFilms();
 
-        //if  genre is null
+        //if genre is null
         if (is_null($genre))
-            $genre = "Drama";
+            return view("films.list", ["films" => $films, "title" => $title]);
 
         //list based on year or genre informed
         foreach ($films as $film) {
             if (!is_null($genre) && strtolower($film['genre']) == strtolower($genre)) {
-                $title = "Listado de todas las pelis filtrado por categoria (Drama)";
+                $title = "Listado de todas las pelis filtradas por categoria " . $genre;
                 $films_filtered[] = $film;
             }
         }
@@ -128,14 +128,13 @@ class FilmController extends Controller
 
     public function sortFilmsByYear()
     {
-        $films_filtered = [];
 
         $title = "Listado de todas las pelis";
         $films = FilmController::readFilms();
 
-        //list based on year
+        //list sorted on year
         $sortFilms = uasort($films, function ($a, $b) {
-            return $a["year"] <=> $b["year"];
+            return $b["year"] <=> $a["year"];
         });
 
 
